@@ -1,0 +1,13 @@
+services:
+  application:
+    build: .
+    deploy:
+      replicas: 2
+    restart: always
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS_CONFIG: kafka-1:9092,kafka-2:9092,kafka-3:9092
+
+networks:
+  default:
+    external: true
+    name: ${DOCKER_NETWORK}
