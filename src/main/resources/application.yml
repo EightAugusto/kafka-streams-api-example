@@ -1,0 +1,13 @@
+kafka:
+  applicationId: @project.artifactId@
+  bootstrapServers: !ENV ${KAFKA_BOOTSTRAP_SERVERS:-localhost:29092,localhost:29093,localhost:29094}
+  numStreamThreads: !ENV ${KAFKA_NUM_STREAM_THREADS:-5}
+
+stream:
+  wordSplitter:
+    enabled: true
+    input: ["eightaugusto.plain.word"]
+    output: &wordSplitterOutput ["eightaugusto.split.word"]
+  wordLogger:
+    enabled: true
+    input: *wordSplitterOutput
